@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #f4f6fb; --surface: #ffffff; --fg: #111a2e; --muted: #58627a; --line: #dde3ef;
+  --soft: #e8eefc; --primary: #1f4fd8; --on-primary: #ffffff;
+  --accent: #ffc837; --on-accent: #1a1400; --ok: #14804a; --danger: #c2331f;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0b1220; --surface: #121b2e; --fg: #eaf0ff; --muted: #9aa7c4; --line: #243049;
+    --soft: #17233d; --primary: #7b98ff; --on-primary: #0b1220;
+    --ok: #4ade80; --danger: #ff7b66; color-scheme: dark;
+  }
+}
+@layer base {
+  html { scroll-behavior: smooth; }
+  body { @apply bg-bg font-body text-[16px] leading-[1.7] text-fg; }
+  h1, h2, h3 { @apply font-display font-semibold leading-[1.25]; text-wrap: balance; }
+  :focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; border-radius: 6px; }
+}
+@layer components {
+  .wrap { @apply mx-auto w-full max-w-[1160px] px-4; }
+  .btn { @apply inline-flex items-center justify-center gap-2 rounded-xl px-5 py-2.5 font-semibold transition hover:-translate-y-0.5 disabled:opacity-50; }
+  .btn-primary { @apply bg-primary text-on-primary hover:opacity-90; }
+  .btn-accent { @apply bg-accent text-on-accent hover:opacity-90; }
+  .btn-outline { @apply border-[1.5px] border-line bg-surface text-fg hover:border-fg; }
+  .card { @apply rounded-2xl border border-line bg-surface; }
+  .chip { @apply rounded-full border-[1.5px] border-line px-4 py-1.5 text-[15px] font-medium transition hover:border-fg; }
+  .chip[aria-pressed="true"] { @apply border-primary bg-primary text-on-primary; }
+  .input { @apply w-full rounded-xl border-[1.5px] border-line bg-surface px-4 py-2.5 text-fg placeholder:text-muted; }
+  .eyebrow { @apply mb-2 text-sm font-semibold tracking-wide text-primary; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .btn { transition: none; }
+}
